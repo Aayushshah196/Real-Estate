@@ -4,7 +4,7 @@
     'author': "Aayush Shah",
     "category": "Real Estate/Market", 
     'description': """
-    A tutorial series for real estate module in odoo
+    A real estate module in odoo
     """,
     "depends": [
         "base",
@@ -23,7 +23,6 @@
         "views/res_users_view.xml",
         "report/estate_property_reports.xml",
         "report/estate_property_templates.xml",
-        "views/hello_world_template.xml",
         "views/web_login.xml",
         # "views/template.xml",
     ],
