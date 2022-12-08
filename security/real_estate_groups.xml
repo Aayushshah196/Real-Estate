@@ -1,0 +1,34 @@
+<odoo>
+    <!-- Real Estate Custom Category -->
+    <record model="ir.module.category" id="module_real_estate">
+        <field name="name">Real Estate</field>
+        <field name="sequence">0</field>
+    </record>
+
+    <record model="ir.module.category" id="module_real_estate_market">
+        <field name="name">Market</field>
+        <field name="parent_id" ref="module_real_estate"/>
+    </record>
+
+    <!-- Real Estate Security Group -->
+    <record id="group_estate_property_client" model="res.groups">
+        <field name="name">Real Estate Client</field>
+        <field name="category_id" ref="module_real_estate" />
+    </record>
+
+    <!-- Creates access group of hierarchy between client and agent where agent is has higher access right -->
+    <record id="group_estate_property_agent" model="res.groups">
+        <field name="name">Real Estate Agent</field>
+        <field name="category_id" ref="module_real_estate" />
+        <field name="implied_ids" eval="[(4,ref('group_estate_property_client'))]" />
+    </record>
+
+    <!-- Real Estate Property Record Rules -->
+    <record id="estate_property_record_rule" model="ir.rule">
+        <field name="name">See only designated plots</field>
+        <field ref="model_estate_property" name="model_id"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('group_estate_property_agent'))]"/>
+    </record>
+
+</odoo>
